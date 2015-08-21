@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath*:spring/spring-application-context.xml"/>
+
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+        <!--<property name="hbm2ddl.auto" value="create-drop"/>-->
+        <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="user" value="sa"/>
+        <property name="password" value=""/>
+        <property name="driverClass" value="org.h2.Driver"/>
+        <property name="jdbcUrl" value="jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE;MODE=Oracle;"/>
+
+        <property name="initialPoolSize" value="5"/>
+        <property name="maxPoolSize" value="10"/>
+        <property name="minPoolSize" value="5"/>
+        <property name="acquireRetryAttempts" value="2"/>
+        <property name="breakAfterAcquireFailure" value="false"/>
+    </bean>
+
+    <!-- http://localhost:11111 -->
+    <!-- Generic H2 (Embedded) with jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE;MODE=Oracle-->
+    <!--<bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server"-->
+          <!--factory-method="createWebServer" depends-on="dataSource"  init-method="start" lazy-init="false"-->
+          <!--destroy-method="stop">-->
+        <!--<constructor-arg value="-web,-webPort,11111"/>-->
+    <!--</bean>-->
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="classpath:/liquibase/changelog-master.xml"/>
+        <!--
+          contexts specifies the runtime contexts to use.
+          -->
+        <property name="contexts" value="test, production"/>
+        <!--<property name="defaultSchema" value=""/>-->
+    </bean>
+
+
+</beans>
