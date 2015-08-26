@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:/spring/spring-liquibase-application-test-context.xml"})
+@ContextConfiguration(locations = { "classpath*:spring/spring-application-test-context.xml"})
 public class VoteDaoImplTest {
 
     @Autowired

@@ -21,6 +21,11 @@
         <property name="breakAfterAcquireFailure" value="false"/>
     </bean>
 
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="liquibase\changelog-master.xml" />
+    </bean>
+
     <!-- http://localhost:11111 -->
     <!-- Generic H2 (Embedded) with jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE;MODE=Oracle-->
     <!--<bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server"-->
