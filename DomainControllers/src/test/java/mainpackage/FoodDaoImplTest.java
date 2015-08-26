@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/spring-application-test-context.xml"})
@@ -64,13 +63,4 @@ public class FoodDaoImplTest {
         food.setType("abc");
         return food;
     }
-    @Test
-    public void MockTest(){
-
-        Food food = mock(Food.class);
-        when(food.isFresh()).thenReturn(false);
-        assertFalse(food.isFresh());
-
-    }
-
 }

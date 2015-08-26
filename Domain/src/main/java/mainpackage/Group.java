@@ -10,8 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_VOTES")
-public class Groups extends BaseEntity{
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_GROUP")
+public class Group extends BaseEntity{
 
     @Column(nullable = false, length = 20)
     private String name;
@@ -23,7 +23,7 @@ public class Groups extends BaseEntity{
     @Column(name = "creator",nullable = false, length = 30)
     private String creatorName;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "User_Grop", joinColumns = {
+    @JoinTable(name = "User_Group", joinColumns = {
             @JoinColumn(name = "group_fk",nullable = false)
     }, inverseJoinColumns = @JoinColumn(name = "user_fk", nullable = false))
     private Set<User> users;

@@ -8,8 +8,8 @@ import javax.persistence.*;
 
 @Table
 @Entity
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_COMMENTS")
-public class Comments extends BaseEntity {
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_COMMENT")
+public class Comment extends BaseEntity {
 
     @Column(nullable =  false)
     private String text;

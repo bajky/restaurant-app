@@ -10,8 +10,8 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "Users")
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_USERS")
+@Table(name = "User")
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_USER")
 @NamedQuery(name = "getUsersByName", query = "SELECT u FROM User u  WHERE u.firstName = :userName")
 public class User extends BaseEntity{
 
@@ -40,10 +40,10 @@ public class User extends BaseEntity{
     private boolean isActive;
 
     @OneToMany(mappedBy = "user")
-    private Set<Comments> comments;
+    private Set<Comment> comments;
 
     @ManyToMany(mappedBy = "user")
-    private Set<Votes> votes;
+    private Set<Vote> votes;
 
     public String getFirstName() {
         return firstName;
@@ -117,26 +117,26 @@ public class User extends BaseEntity{
         this.isActive = isActive;
     }
 
-    public Set<Comments> getComments() {
+    public Set<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comments> comments) {
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
 
-    public Set<Votes> getVotes() {
+    public Set<Vote> getVotes() {
         return votes;
     }
 
-    public void setVotes(Set<Votes> votes) {
+    public void setVotes(Set<Vote> votes) {
         this.votes = votes;
     }
 
-    public void addComment(Comments comment){
+    public void addComment(Comment comment){
         this.comments.add(comment);
     }
-    public void addVote(Votes vote){
+    public void addVote(Vote vote){
         this.votes.add(vote);
     }
 

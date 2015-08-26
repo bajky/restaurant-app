@@ -126,9 +126,18 @@
 
     </dependencies>
 
-
     <modules>
         <module>Domain</module>
         <module>DomainControllers</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>liquibase-test</id>
+        </profile>
+
+        <profile>
+            <id >h2-test</id>
+        </profile>
+    </profiles>
 </project>

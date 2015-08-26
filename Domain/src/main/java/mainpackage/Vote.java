@@ -8,11 +8,11 @@ import java.util.Date;
  */
 @Entity
 @Table
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_VOTES")
-@NamedQuery(name = Votes.SELECT_VOTES_BY_USERS, query = "SELECT new mainpackage.VotesVO(v.timeFrom, v.restaurant.tittle)" +
-        " FROM Votes v WHERE v.user.id = :userID")
-public class Votes extends BaseEntity {
-    public static final String SELECT_VOTES_BY_USERS = "Votes.SELECT_VOTES_BY_USERS";
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_VOTE")
+@NamedQuery(name = Vote.SELECT_VOTES_BY_USERS, query = "SELECT new mainpackage.VotesVO(v.timeFrom, v.restaurant.tittle)" +
+        " FROM Vote v WHERE v.user.id = :userID")
+public class Vote extends BaseEntity {
+    public static final String SELECT_VOTES_BY_USERS = "Vote.SELECT_VOTES_BY_USER";
 
     @Column(name = "time_to", nullable = false)
     private Date timeTo;
@@ -69,7 +69,4 @@ public class Votes extends BaseEntity {
     public void setTimeTo(Date timeTo) {
         this.timeTo = timeTo;
     }
-
-
-
 }

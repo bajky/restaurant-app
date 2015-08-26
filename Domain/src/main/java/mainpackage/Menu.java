@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table
-@SequenceGenerator(name = "generator", sequenceName = "MENU_SEQUENCE")
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_MENU")
 public class Menu extends BaseEntity {
 
     public Menu() {

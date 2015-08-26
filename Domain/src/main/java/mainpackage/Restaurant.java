@@ -1,7 +1,5 @@
 package mainpackage;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table
-@SequenceGenerator(name = "generator" , sequenceName = "SEQ_MENU")
+@SequenceGenerator(name = "generator" , sequenceName = "SEQ_RESTAURANT")
 @NamedQuery(name = "allRestaurants", query = "SELECT r FROM Restaurant r")
 public class Restaurant extends BaseEntity{
 
@@ -45,10 +43,10 @@ public class Restaurant extends BaseEntity{
     private Set<Menu> menuSet;
 
     @OneToMany(mappedBy = "restaurant")
-    private Set<Comments> comments;
+    private Set<Comment> comments;
 
     @OneToMany(mappedBy = "restaurant")
-    private Set<Votes> votes;
+    private Set<Vote> votes;
 
     public void addMenu(Menu menu){
         menuSet.add(menu);

@@ -21,11 +21,12 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
-                    <changeLogFile>C:\Projects2\pbs\Restaurant\DomainControllers\src\main\resources\liquibase\changelog-master.xml</changeLogFile>
+                    <changeLogFile>liquibase\changelog-master.xml</changeLogFile>
                     <driver>oracle.jdbc.OracleDriver</driver>
                     <url>jdbc:oracle:thin:@localhost:1521:ORCL</url>
-                    <username>C##david2</username>
-                    <password>davidko</password>
+                    <username>C##RESTAURANT_DB</username>
+                    <password>C##RESTAURANT_DB</password>
+                    <logging>DEBUG</logging>
                 </configuration>
                 <executions>
                     <execution>

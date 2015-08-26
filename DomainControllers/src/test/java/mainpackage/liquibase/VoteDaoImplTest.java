@@ -1,6 +1,6 @@
-package mainpackage;
+package mainpackage.liquibase;
 
-
+import mainpackage.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,14 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:/spring/spring-application-test-context.xml"})
-public class VotesDaoImplTest {
+@ContextConfiguration(locations = { "classpath*:/spring/spring-liquibase-application-test-context.xml"})
+public class VoteDaoImplTest {
 
     @Autowired
     private VotesDao votesDao;
 
     @Test
-    public void getVotesByUserTest(){
+    public void getVotesByUserTest() throws InterruptedException {
         User user = prepareUser();
         Restaurant restaurant = prepateRestaurant();
         Vote vote = prepareVote(user, restaurant);

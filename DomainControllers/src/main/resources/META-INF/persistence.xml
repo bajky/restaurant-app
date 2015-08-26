@@ -27,9 +27,9 @@
         <class>mainpackage.Menu</class>
         <class>mainpackage.Restaurant</class>
         <class>mainpackage.User</class>
-        <class>mainpackage.Groups</class>
-        <class>mainpackage.Votes</class>
-        <class>mainpackage.Comments</class>
+        <class>mainpackage.Group</class>
+        <class>mainpackage.Vote</class>
+        <class>mainpackage.Comment</class>
 
     </persistence-unit>
 </persistence>

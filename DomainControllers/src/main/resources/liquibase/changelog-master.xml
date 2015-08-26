@@ -1,53 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet author="David" id="1440282871879-5">
-        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="SEQ_COMMENTS" startValue="1"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-6">
-        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="SEQ_FOOD" startValue="1"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-7">
-        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="SEQ_GROUPS" startValue="1"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-8">
-        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="SEQ_MENU" startValue="1"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-9">
-        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="SEQ_RESTAURANT" startValue="1"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-10">
-        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="SEQ_USERS" startValue="1"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-11">
-        <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999" minValue="1" ordered="false" sequenceName="SEQ_VOTES" startValue="1"/>
-    </changeSet>
-
-    <changeSet author="David" id="1440282871879-14">
-        <createTable tableName="COMMENTS">
-            <column name="ID" type="NUMBER(19, 0)">
+    <changeSet author="David" id="001">
+        <comment>Sequence SEQ_COMMENTS for table COMMENT created</comment>
+        <createSequence sequenceName="SEQ_COMMENT" startValue="1"/>
+        <createTable tableName="COMMENT">
+            <column name="ID" type="NUMBER(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="COMMENT_PK"/>
+            </column>
+            <column name="ADDING_TIME" type="NUMBER(19)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ADDING_TIME" type="NUMBER(19, 0)">
+            <column name="IS_VISIBLE" type="NUMBER(1)">
                 <constraints nullable="false"/>
             </column>
-            <column name="IS_VISIBLE" type="NUMBER(1, 0)">
+            <column name="TEXT" type="VARCHAR2(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="TEXT" type="VARCHAR2(255 CHAR)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="RESTAURANT_FK" type="NUMBER(19, 0)"/>
-            <column name="USER_FK" type="NUMBER(19, 0)"/>
+            <column name="RESTAURANT_FK" type="NUMBER(19)"/>
+            <column name="USER_FK" type="NUMBER(19)"/>
         </createTable>
     </changeSet>
-    <changeSet author="David" id="1440282871879-15">
+
+    <changeSet author="David" id="002">
+        <comment>Sequence SEQ_FOOD for table FOOD created</comment>
+        <createSequence sequenceName="SEQ_FOOD" startValue="1"/>
         <createTable tableName="FOOD">
-            <column name="ID" type="NUMBER(19, 0)">
+            <column name="ID" type="NUMBER(19)">
                 <constraints nullable="false"/>
             </column>
             <column name="DESCRIPTION" type="VARCHAR2(1000 CHAR)"/>
-            <column name="PRICE" type="NUMBER(10, 0)">
+            <column name="PRICE" type="NUMBER(10)">
                 <constraints nullable="false"/>
             </column>
             <column name="TITTLE" type="VARCHAR2(20 CHAR)">
@@ -56,13 +39,16 @@
             <column name="TYPE" type="VARCHAR2(10 CHAR)">
                 <constraints nullable="false"/>
             </column>
-            <column name="MENU_FK" type="NUMBER(19, 0)"/>
+            <column name="MENU_FK" type="NUMBER(19)"/>
         </createTable>
     </changeSet>
-    <changeSet author="David" id="1440282871879-16">
-        <createTable tableName="GROUPS">
-            <column name="ID" type="NUMBER(19, 0)">
-                <constraints nullable="false"/>
+
+    <changeSet author="David" id="003">
+        <comment>Sequence SEQ_GROUP for table GROUP created</comment>
+        <createSequence cacheSize="20" cycle="false"  sequenceName="SEQ_GROUP" />
+        <createTable tableName="GROUP">
+            <column name="ID" type="NUMBER(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="GROUP_PK"/>
             </column>
             <column name="CREATED_TIME" type="TIMESTAMP(6)">
                 <constraints nullable="false"/>
@@ -78,20 +64,36 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="David" id="1440282871879-17">
+
+    <changeSet author="David" id="004">
+        <comment>Sequence SEQ_MENU for table MENU created</comment>
+        <createSequence cacheSize="20" cycle="false"  sequenceName="SEQ_MENU" />
         <createTable tableName="MENU">
-            <column name="ID" type="NUMBER(19, 0)">
+            <column name="ID" type="NUMBER(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="MENU_PK"/>
+            </column>
+            <column name="CREATED_TIME" type="TIMESTAMP(6)">
                 <constraints nullable="false"/>
             </column>
-            <column name="DAY" type="NUMBER(5, 0)"/>
-            <column name="PRICE" type="NUMBER(10, 0)"/>
-            <column name="RESTAURANT_FK" type="NUMBER(19, 0)"/>
+            <column name="CREATOR" type="VARCHAR2(30 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR2(1000 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(20 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RESTAURANT_FK" type="NUMBER(19)"/>
         </createTable>
     </changeSet>
-    <changeSet author="David" id="1440282871879-18">
+
+    <changeSet author="David" id="005">
+        <comment>Sequence SEQ_RESTAURANT for table RESTAURANT created</comment>
+        <createSequence cacheSize="20" cycle="false" sequenceName="SEQ_RESTAURANT" />
         <createTable tableName="RESTAURANT">
-            <column name="ID" type="NUMBER(19, 0)">
-                <constraints nullable="false"/>
+            <column name="ID" type="NUMBER(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="RESTAURANT_PK"/>
             </column>
             <column name="TYPE" type="VARCHAR2(255 CHAR)">
                 <constraints nullable="false"/>
@@ -114,10 +116,13 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="David" id="1440282871879-19">
-        <createTable tableName="USERS">
-            <column name="ID" type="NUMBER(19, 0)">
-                <constraints nullable="false"/>
+
+    <changeSet author="David" id="006">
+        <comment>Sequence SEQ_USER for table USER created</comment>
+        <createSequence cacheSize="20" cycle="false"  sequenceName="SEQ_USER" />
+        <createTable tableName="USER">
+            <column name="ID" type="NUMBER(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="USER_PK"/>
             </column>
             <column name="ACC_NAME" type="VARCHAR2(255 CHAR)">
                 <constraints nullable="false"/>
@@ -131,10 +136,10 @@
             <column name="FIRST_NAME" type="VARCHAR2(255 CHAR)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ID_ACTIVE" type="NUMBER(1, 0)">
+            <column name="ID_ACTIVE" type="NUMBER(1)">
                 <constraints nullable="false"/>
             </column>
-            <column name="IS_BANNED" type="NUMBER(1, 0)">
+            <column name="IS_BANNED" type="NUMBER(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="LAST_NAME" type="VARCHAR2(255 CHAR)">
@@ -148,20 +153,26 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="David" id="1440282871879-20">
-        <createTable tableName="USER_GROP">
-            <column name="GROUP_FK" type="NUMBER(19, 0)">
+
+    <changeSet author="David" id="007">
+        <createTable tableName="USER_GROUP">
+            <column name="GROUP_FK" type="NUMBER(19)">
                 <constraints nullable="false"/>
             </column>
-            <column name="USER_FK" type="NUMBER(19, 0)">
+            <column name="USER_FK" type="NUMBER(19)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <comment>primary key for table USER_GROUP</comment>
+        <addPrimaryKey columnNames="GROUP_FK, USER_FK" tableName="USER_GROUP"/>
     </changeSet>
-    <changeSet author="David" id="1440282871879-21">
-        <createTable tableName="VOTES">
-            <column name="ID" type="NUMBER(19, 0)">
-                <constraints nullable="false"/>
+
+    <changeSet author="David" id="008">
+        <comment>Sequence SEQ_VOTE for table VOTE created</comment>
+        <createSequence cacheSize="20" cycle="false"  sequenceName="SEQ_VOTE" />
+        <createTable tableName="VOTE">
+            <column name="ID" type="NUMBER(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="VOTE_PK"/>
             </column>
             <column name="ADDING_TIME" type="TIMESTAMP(6)">
                 <constraints nullable="false"/>
@@ -172,100 +183,41 @@
             <column name="TIME_TO" type="TIMESTAMP(6)">
                 <constraints nullable="false"/>
             </column>
-            <column name="RESTAURANT_FK" type="NUMBER(19, 0)"/>
-            <column name="USER_FK" type="NUMBER(19, 0)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-22">
-        <createIndex indexName="SYS_C0010333" tableName="COMMENTS" unique="true">
-            <column name="ID"/>
-        </createIndex>
-        <addPrimaryKey columnNames="ID" constraintName="SYS_C0010333" forIndexName="SYS_C0010333" tableName="COMMENTS"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-23">
-        <createIndex indexName="SYS_C0010338" tableName="FOOD" unique="true">
-            <column name="ID"/>
-        </createIndex>
-        <addPrimaryKey columnNames="ID" constraintName="SYS_C0010338" forIndexName="SYS_C0010338" tableName="FOOD"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-24">
-        <createIndex indexName="SYS_C0010344" tableName="GROUPS" unique="true">
-            <column name="ID"/>
-        </createIndex>
-        <addPrimaryKey columnNames="ID" constraintName="SYS_C0010344" forIndexName="SYS_C0010344" tableName="GROUPS"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-25">
-        <createIndex indexName="SYS_C0010346" tableName="MENU" unique="true">
-            <column name="ID"/>
-        </createIndex>
-        <addPrimaryKey columnNames="ID" constraintName="SYS_C0010346" forIndexName="SYS_C0010346" tableName="MENU"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-26">
-        <createIndex indexName="SYS_C0010354" tableName="RESTAURANT" unique="true">
-            <column name="ID"/>
-        </createIndex>
-        <addPrimaryKey columnNames="ID" constraintName="SYS_C0010354" forIndexName="SYS_C0010354" tableName="RESTAURANT"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-27">
-        <createIndex indexName="SYS_C0010357" tableName="USER_GROP" unique="true">
-            <column name="GROUP_FK"/>
-            <column name="USER_FK"/>
-        </createIndex>
-        <addPrimaryKey columnNames="GROUP_FK, USER_FK" constraintName="SYS_C0010357" forIndexName="SYS_C0010357" tableName="USER_GROP"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-28">
-        <createIndex indexName="SYS_C0010368" tableName="USERS" unique="true">
-            <column name="ID"/>
-        </createIndex>
-        <addPrimaryKey columnNames="ID" constraintName="SYS_C0010368" forIndexName="SYS_C0010368" tableName="USERS"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-29">
-        <createIndex indexName="SYS_C0010373" tableName="VOTES" unique="true">
-            <column name="ID"/>
-        </createIndex>
-        <addPrimaryKey columnNames="ID" constraintName="SYS_C0010373" forIndexName="SYS_C0010373" tableName="VOTES"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-30">
-        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="COMMENTS" constraintName="FK_3WVH8UPCD4KJSNC7C77VMSC48" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USERS"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-31">
-        <addForeignKeyConstraint baseColumnNames="GROUP_FK" baseTableName="USER_GROP" constraintName="FK_5QJ7ANA7JAGT9ATBNG3PL9LBK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GROUPS"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-32">
-        <addForeignKeyConstraint baseColumnNames="RESTAURANT_FK" baseTableName="VOTES" constraintName="FK_5WJSKJD5XSCUW9XX2O7LIKBCE" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RESTAURANT"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-33">
-        <addForeignKeyConstraint baseColumnNames="ID" baseTableName="VOTES" constraintName="FK_6IELUIOW7LC26K9P5W90T8RW" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="VOTES"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-34">
-        <addForeignKeyConstraint baseColumnNames="RESTAURANT_FK" baseTableName="MENU" constraintName="FK_9V9HUELP3K8DO0KAJC2FFU0A" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RESTAURANT"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-35">
-        <addForeignKeyConstraint baseColumnNames="MENU_FK" baseTableName="FOOD" constraintName="FK_A87T1J3CC088V4FOGI28H5ADI" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="MENU"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-36">
-        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="VOTES" constraintName="FK_F0MLNO2C8CF0CVTKSY3MHKHGF" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USERS"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-37">
-        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="USER_GROP" constraintName="FK_G0FW9P8L2B52INXEQLPE8STK4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USERS"/>
-    </changeSet>
-    <changeSet author="David" id="1440282871879-38">
-        <addForeignKeyConstraint baseColumnNames="RESTAURANT_FK" baseTableName="COMMENTS" constraintName="FK_MR9LGDRSYJEFLP2YQD9JT0JAS" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RESTAURANT"/>
-    </changeSet>
-
-    <changeSet author="David" id="1440282871879-39">
-        <createTable tableName="Student">
-            <column name="ID" type="NUMBER(19, 0)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DESCRIPTION" type="VARCHAR2(1000 CHAR)"/>
-            <column name="PRICE" type="NUMBER(10, 0)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="RESTAURANT_FK" type="NUMBER(19)"/>
+            <column name="USER_FK" type="NUMBER(19)"/>
         </createTable>
     </changeSet>
 
-    <changeSet author="David" id="1440282871879-40">
-        <dropTable tableName="Student"/>
+    <changeSet author="David" id="009">
+        <comment>foreign key USER_FK from table COMMENT references to table USER</comment>
+        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="COMMENT" constraintName="FK_COMMENT_USER" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USER"/>
+    </changeSet>
+    <changeSet author="David" id="010">
+        <comment>foreign key RESTAURANT_FK from table VOTE references to table RESTAURANT</comment>
+        <addForeignKeyConstraint baseColumnNames="RESTAURANT_FK" baseTableName="VOTE" constraintName="FK_VOTE_RESTAURANT" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RESTAURANT"/>
+    </changeSet>
+    <changeSet author="David" id="011">
+        <comment>foreign key RESTAURANT_FK from table MENU references to table RESTAURANT</comment>
+        <addForeignKeyConstraint baseColumnNames="RESTAURANT_FK" baseTableName="MENU" constraintName="FK_MENU_RESTAURANT" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RESTAURANT"/>
+    </changeSet>
+    <changeSet author="David" id="012">
+        <comment>foreign key MENU_FK from table FOOD references to table MENU</comment>
+        <addForeignKeyConstraint baseColumnNames="MENU_FK" baseTableName="FOOD" constraintName="FK_FOOD_MENU" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="MENU"/>
+    </changeSet>
+    <changeSet author="David" id="013">
+        <comment>foreign key USER_FK from table VOTE references to table USER</comment>
+        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="VOTE" constraintName="FK_VOTE_USER" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USER"/>
+    </changeSet>
+    <changeSet author="David" id="014">
+        <comment>foreign key RESTAURANT_FK from table COMMENT references to table RESTAURANT</comment>
+        <addForeignKeyConstraint baseColumnNames="RESTAURANT_FK" baseTableName="COMMENT" constraintName="FK_COMMENT_RESTAURANT" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RESTAURANT"/>
+    </changeSet>
+    <changeSet author="David" id="015">
+        <comment>foreign key GROUP_FK from table USER_GROUP references to table GROUP</comment>
+        <addForeignKeyConstraint baseColumnNames="GROUP_FK" baseTableName="USER_GROUP" constraintName="FK_USER_GROUP_GROUP" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GROUP"/>
+    </changeSet>
+    <changeSet author="David" id="016">
+        <comment>foreign key USER_FK from table USER_GROUP references to table USER</comment>
+        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="USER_GROUP" constraintName="FK_USER_GROUP_USER" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USER"/>
     </changeSet>
 </databaseChangeLog>
