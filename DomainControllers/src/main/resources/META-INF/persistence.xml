@@ -26,7 +26,7 @@
         <class>mainpackage.Food</class>
         <class>mainpackage.Menu</class>
         <class>mainpackage.Restaurant</class>
-        <class>mainpackage.Users</class>
+        <class>mainpackage.User</class>
         <class>mainpackage.Groups</class>
         <class>mainpackage.Votes</class>
         <class>mainpackage.Comments</class>

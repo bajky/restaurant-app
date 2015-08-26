@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/spring-application-test-context.xml"})
@@ -46,7 +44,6 @@ public class FoodDaoImplTest {
     public void testFindById() throws Exception{
         Food food = foodDao.create(prepareFood());
         Food foundFood = foodDao.findById(food.getId()); // TEST
-
         assertEquals(food, foundFood);
     }
 
@@ -66,6 +63,14 @@ public class FoodDaoImplTest {
         food.setTittle("aaa");
         food.setType("abc");
         return food;
+    }
+    @Test
+    public void MockTest(){
+
+        Food food = mock(Food.class);
+        when(food.isFresh()).thenReturn(false);
+        assertFalse(food.isFresh());
+
     }
 
 }

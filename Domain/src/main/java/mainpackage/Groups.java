@@ -26,7 +26,7 @@ public class Groups extends BaseEntity{
     @JoinTable(name = "User_Grop", joinColumns = {
             @JoinColumn(name = "group_fk",nullable = false)
     }, inverseJoinColumns = @JoinColumn(name = "user_fk", nullable = false))
-    private Set<Users> users;
+    private Set<User> users;
 
 
 

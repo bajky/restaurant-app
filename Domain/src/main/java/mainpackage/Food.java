@@ -93,4 +93,12 @@ public class Food extends BaseEntity{
         result = 31 * result + price.hashCode();
         return result;
     }
+
+    public boolean isFresh(){
+        return false;
+    }
+
+    void sayFresh(){
+        System.out.println(isFresh());
+    }
 }

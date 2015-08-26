@@ -23,7 +23,7 @@ public class Comments extends BaseEntity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_fk")
-    Users user;
+    User user;
 
     public String getText() {
         return text;
@@ -57,11 +57,11 @@ public class Comments extends BaseEntity {
         this.restaurant = restaurant;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }
