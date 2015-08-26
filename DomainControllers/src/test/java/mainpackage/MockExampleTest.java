@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +20,10 @@ public class MockExampleTest {
     @Mock
     private Food foodMock;
 
-    // @InjectMocks
+    @Autowired
+    private FoodDao foodDao;
+
+    // @InjectMocks todo
 
     @Test
     public void mockTest1(){

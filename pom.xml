@@ -13,13 +13,13 @@
         <slf4j-version>1.7.12</slf4j-version>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+        <generateDDL>false</generateDDL>
+        <showSql>false</showSql>
+        <databaseDialect>org.hibernate.dialect.Oracle10gDialect</databaseDialect>
     </properties>
 
     <dependencyManagement>
-
         <dependencies>
-
-
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
@@ -106,13 +106,7 @@
 
 
     <dependencies>
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-simple</artifactId>-->
-        <!--<version>${slf4j-version}</version>-->
-        <!--</dependency>-->
-
-        <dependency>
+         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-version}</version>
@@ -125,7 +119,15 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources/spring</directory>
+                <targetPath>/spring</targetPath>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
     <modules>
         <module>Domain</module>
         <module>DomainControllers</module>
@@ -134,10 +136,20 @@
     <profiles>
         <profile>
             <id>liquibase-test</id>
+            <properties>
+                <generateDDL>false</generateDDL>
+                <showSql>true</showSql>
+                <databaseDialect>org.hibernate.dialect.H2Dialect</databaseDialect>
+            </properties>
         </profile>
 
         <profile>
-            <id >h2-test</id>
+            <id>h2-test</id>
+            <properties>
+                <generateDDL>true</generateDDL>
+                <showSql>true</showSql>
+                <databaseDialect>org.hibernate.dialect.H2Dialect</databaseDialect>
+            </properties>
         </profile>
     </profiles>
 </project>

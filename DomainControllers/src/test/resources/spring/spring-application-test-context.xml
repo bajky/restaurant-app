@@ -8,13 +8,6 @@
 
     <import resource="classpath*:spring/spring-application-context.xml"/>
 
-    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="showSql" value="true"/>
-        <property name="generateDdl" value="true"/>
-        <!--<property name="hbm2ddl.auto" value="create-drop"/>-->
-        <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
-    </bean>
-
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="user" value="sa"/>
         <property name="password" value=""/>

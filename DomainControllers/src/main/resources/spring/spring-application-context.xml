@@ -13,10 +13,15 @@
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.format_sql">${showSql}</prop>
+                <!--<property name="hbm2ddl.auto" value="create-drop"/>-->
             </props>
         </property>
+    </bean>
 
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="generateDdl" value="${generateDDL}"/>
+        <property name="databasePlatform" value="${databaseDialect}"/>
     </bean>
 
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

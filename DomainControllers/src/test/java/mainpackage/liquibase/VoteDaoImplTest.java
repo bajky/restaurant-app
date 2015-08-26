@@ -72,4 +72,6 @@ public class VoteDaoImplTest {
 
         return restaurant;
     }
+
+
 }
