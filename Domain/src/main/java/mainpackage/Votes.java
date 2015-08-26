@@ -9,8 +9,8 @@ import java.util.Date;
 @Entity
 @Table
 @SequenceGenerator(name = "generator", sequenceName = "SEQ_VOTES")
-@NamedQuery(name = Votes.SELECT_VOTES_BY_USERS, query = "SELECT v.timeFrom, v.restaurant.tittle FROM Votes v JOIN " +
-        "v.user JOIN v.restaurant WHERE v.user.id = :userID")
+@NamedQuery(name = Votes.SELECT_VOTES_BY_USERS, query = "SELECT new mainpackage.VotesVO(v.timeFrom, v.restaurant.tittle)" +
+        " FROM Votes v WHERE v.user.id = :userID")
 public class Votes extends BaseEntity {
     public static final String SELECT_VOTES_BY_USERS = "Votes.SELECT_VOTES_BY_USERS";
 

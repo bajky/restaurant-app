@@ -10,9 +10,11 @@ import java.util.List;
 @Repository
 public class VotesDaoImpl extends GenericDaoImpl<Votes> implements VotesDao {
     @Override
-    public List<Object[]> getVotesByUser(long userID) {
-        return entityManager.createNamedQuery(Votes.SELECT_VOTES_BY_USERS)
+    public List<VotesVO> getVotesByUser(long userID) {
+        List<VotesVO> resultList = entityManager.createNamedQuery(Votes.SELECT_VOTES_BY_USERS, VotesVO.class)
                 .setParameter("userID", userID)
                 .getResultList();
+
+        return resultList;
     }
 }

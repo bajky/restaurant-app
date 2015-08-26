@@ -253,4 +253,19 @@
         <addForeignKeyConstraint baseColumnNames="RESTAURANT_FK" baseTableName="COMMENTS" constraintName="FK_MR9LGDRSYJEFLP2YQD9JT0JAS" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="RESTAURANT"/>
     </changeSet>
 
+    <changeSet author="David" id="1440282871879-39">
+        <createTable tableName="Student">
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR2(1000 CHAR)"/>
+            <column name="PRICE" type="NUMBER(10, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="David" id="1440282871879-40">
+        <dropTable tableName="Student"/>
+    </changeSet>
 </databaseChangeLog>

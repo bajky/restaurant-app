@@ -29,12 +29,12 @@ public class VotesDaoImplTest {
         Votes vote = prepareVote(user, restaurant);
 
         votesDao.create(vote);
-        List<Object[]> resultList = votesDao.getVotesByUser(user.getId());
-        assertEquals(vote.getTimeFrom(), resultList.get(0)[0]);
-        assertEquals(restaurant.getTittle(), resultList.get(0)[1]);
+        List<VotesVO> resultList = votesDao.getVotesByUser(user.getId());
+        assertEquals(vote.getTimeFrom(), resultList.get(0).getTimeFrom());
+        assertEquals(restaurant.getTittle(), resultList.get(0).getTittle());
     }
 
-    private Votes prepareVote(User user, Restaurant restaurant){
+    private static Votes prepareVote(User user, Restaurant restaurant){
         Votes vote = new Votes();
         vote.setAddingTime(new Date(123456789));
         vote.setTimeFrom(new Date(123456451));
@@ -45,7 +45,7 @@ public class VotesDaoImplTest {
         return vote;
     }
 
-    private User prepareUser(){
+    private static User prepareUser(){
         User user = new User();
         user.setAcountName("david");
         user.setPassword("1511515");
@@ -59,7 +59,7 @@ public class VotesDaoImplTest {
 
         return user;
     }
-    private Restaurant prepateRestaurant(){
+    private static Restaurant prepateRestaurant(){
         Restaurant restaurant = new Restaurant();
         restaurant.setTittle("U Mnicha");
         restaurant .setPhoneNumber("445515");

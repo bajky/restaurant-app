@@ -14,14 +14,14 @@ public class Main {
 
 
     public static void main(String[] args) {
-        ApplicationContext appContext = new ClassPathXmlApplicationContext("spring/spring-application-context.xml");
-        VotesDao votesDao =  appContext.getBean(VotesDao.class);
-        List<Object[]> votesByUser = votesDao.getVotesByUser(200);
-
-        for(Object[] qResult : votesByUser){
-            System.err.println(qResult[0]);
-            System.err.println(qResult[1]);
-        }
+//        ApplicationContext appContext = new ClassPathXmlApplicationContext("spring/spring-application-context.xml");
+//        VotesDao votesDao =  appContext.getBean(VotesDao.class);
+//        List<Object[]> votesByUser = votesDao.getVotesByUser(200);
+//
+//        for(Object[] qResult : votesByUser){
+//            System.err.println(qResult[0]);
+//            System.err.println(qResult[1]);
+//        }
 
     }
 

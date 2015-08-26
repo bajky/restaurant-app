@@ -9,5 +9,5 @@ import java.util.List;
  */
 @Repository
 public interface VotesDao extends GenericDao<Votes>{
-    List<Object[]> getVotesByUser(long userID);
+    List<VotesVO> getVotesByUser(long userID);
 }
