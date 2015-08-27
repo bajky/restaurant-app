@@ -11,8 +11,22 @@
     <groupId>com.restaurant.app</groupId>
     <artifactId>domain-controllers</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <name>Restaurant::DomainControllers</name>
 
     <packaging>jar</packaging>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources/spring</directory>
+                <targetPath>/spring</targetPath>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 
     <dependencies>
         <dependency>
