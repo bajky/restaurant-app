@@ -12,7 +12,7 @@
         <property name="user" value="sa"/>
         <property name="password" value=""/>
         <property name="driverClass" value="org.h2.Driver"/>
-        <property name="jdbcUrl" value="jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE;MODE=Oracle;"/>
+        <property name="jdbcUrl" value="jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE;MODE=Oracle"/>
 
         <property name="initialPoolSize" value="5"/>
         <property name="maxPoolSize" value="10"/>
@@ -20,8 +20,6 @@
         <property name="acquireRetryAttempts" value="2"/>
         <property name="breakAfterAcquireFailure" value="false"/>
     </bean>
-
-
 
      <!--http://localhost:11111 -->
      <!--Generic H2 (Embedded) with jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE;MODE=Oracle-->

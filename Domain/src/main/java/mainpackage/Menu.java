@@ -9,8 +9,8 @@ import java.util.Set;
  */
 
 @Entity
-@Table
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_MENU")
+@Table(name = "R_MENU")
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_R_MENU")
 public class Menu extends BaseEntity {
 
     public Menu() {
@@ -27,7 +27,7 @@ public class Menu extends BaseEntity {
     private Set<Food> foods;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_fk")
+    @JoinColumn(name = "r_restaurant_fk")
     private Restaurant restaurant;
 
     public Short getDay() {

@@ -10,8 +10,8 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "User")
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_USER")
+@Table(name = "R_USER")
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_R_USER")
 @NamedQuery(name = "getUsersByName", query = "SELECT u FROM User u  WHERE u.firstName = :userName")
 public class User extends BaseEntity{
 

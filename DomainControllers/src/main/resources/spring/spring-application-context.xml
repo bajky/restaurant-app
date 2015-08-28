@@ -14,30 +14,23 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.format_sql">${showSql}</prop>
-                <!--<property name="hbm2ddl.auto" value="create-drop"/>-->
+                <prop key="hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
-
 
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="generateDdl" value="${generateDDL}"/>
         <property name="databasePlatform" value="${databaseDialect}"/>
     </bean>
 
-    <!--<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">-->
-        <!--<property name="generateDdl" value="true"/>-->
-        <!--&lt;!&ndash;<property name="hbm2ddl.auto" value="create-drop"/>&ndash;&gt;-->
-        <!--<property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect"/>-->
-    <!--</bean>-->
-
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="user" value="C##david2"/>
-        <property name="password" value="davidko"/>
+        <property name="user" value="C##RESTAURANT_DB"/>
+        <property name="password" value="C##RESTAURANT_DB"/>
         <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:ORCL"/>
         <!-- Number of Connections a pool will try to acquire upon startup. -->
@@ -50,8 +43,10 @@
         <property name="breakAfterAcquireFailure" value="true"/>
     </bean>
 
-    <!--<bean id="foodDao" class="mainpackage.FoodDaoImpl"></bean>-->
-
+    <!--<bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">-->
+        <!--<property name="dataSource" ref="dataSource" />-->
+        <!--<property name="changeLog" value="liquibase\changelog-master.xml" />-->
+    <!--</bean>-->
     <!-- Enables annotation-driven transaction management. -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

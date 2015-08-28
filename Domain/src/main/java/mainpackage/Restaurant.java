@@ -9,8 +9,8 @@ import java.util.Set;
  */
 
 @Entity
-@Table
-@SequenceGenerator(name = "generator" , sequenceName = "SEQ_RESTAURANT")
+@Table(name = "R_RESTAURANT")
+@SequenceGenerator(name = "generator" , sequenceName = "SEQ_R_RESTAURANT")
 @NamedQuery(name = "allRestaurants", query = "SELECT r FROM Restaurant r")
 public class Restaurant extends BaseEntity{
 

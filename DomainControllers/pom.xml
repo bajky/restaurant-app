@@ -18,12 +18,12 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources/spring</directory>
-                <targetPath>/spring</targetPath>
+                <directory>src/main/resources/</directory>
                 <filtering>true</filtering>
             </resource>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
             </resource>
         </resources>
     </build>
@@ -118,11 +118,141 @@
 
     </dependencies>
 
+    <!-- repository for liquibase-->
     <repositories>
         <repository>
             <id>codelds</id>
             <url>https://code.lds.org/nexus/content/groups/main-repo</url>
         </repository>
     </repositories>
+
+    <profiles>
+        <profile>
+            <id>liquibase-test</id>
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>process-test-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <delete file="${project.build.testOutputDirectory}/spring/spring-application-test-context.xml"/>
+                                        <copy file="src/test/profiles/liquibase/spring-application-test-context.xml"
+                                              tofile="${project.build.testOutputDirectory}/spring/spring-application-test-context.xml"/>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <!--<id>default-test</id>-->
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <skipTests>false</skipTests>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                        </configuration>
+                    </plugin>
+                    <!--<plugin>-->
+                    <!--<artifactId>maven-jar-plugin</artifactId>-->
+                    <!--<executions>-->
+                    <!--<execution>-->
+                    <!--<phase>package</phase>-->
+                    <!--<goals>-->
+                    <!--<goal>jar</goal>-->
+                    <!--</goals>-->
+                    <!--<configuration>-->
+                    <!--<classifier>test</classifier>-->
+                    <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--</executions>-->
+                    <!--</plugin>-->
+                </plugins>
+            </build>
+            <properties>
+                <generateDDL>false</generateDDL>
+                <showSql>true</showSql>
+                <databaseDialect>org.hibernate.dialect.H2Dialect</databaseDialect>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>h2-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>process-test-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <delete file="${project.build.testOutputDirectory}/spring/spring-application-test-context.xml"/>
+                                        <copy file="src/test/profiles/h2/spring-application-test-context.xml"
+                                              tofile="${project.build.testOutputDirectory}/spring/spring-application-test-context.xml"/>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <!--<id>default-test</id>-->
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <skipTests>false</skipTests>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                        </configuration>
+                    </plugin>
+                    <!--<plugin>-->
+                    <!--<artifactId>maven-jar-plugin</artifactId>-->
+                    <!--<executions>-->
+                    <!--<execution>-->
+                    <!--<phase>package</phase>-->
+                    <!--<goals>-->
+                    <!--<goal>jar</goal>-->
+                    <!--</goals>-->
+                    <!--<configuration>-->
+                    <!--<classifier>test</classifier>-->
+                    <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--</executions>-->
+                    <!--</plugin>-->
+                </plugins>
+            </build>
+            <properties>
+                <generateDDL>true</generateDDL>
+                <showSql>true</showSql>
+                <databaseDialect>org.hibernate.dialect.H2Dialect</databaseDialect>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

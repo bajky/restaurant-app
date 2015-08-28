@@ -23,8 +23,6 @@ public class MockExampleTest {
     @Autowired
     private FoodDao foodDao;
 
-    // @InjectMocks todo
-
     @Test
     public void mockTest1(){
         Food food = mock(Food.class);

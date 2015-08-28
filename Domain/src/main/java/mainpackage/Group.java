@@ -9,8 +9,8 @@ import java.util.Set;
  */
 
 @Entity
-@Table
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_GROUP")
+@Table(name = "R_GROUP")
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_R_GROUP")
 public class Group extends BaseEntity{
 
     @Column(nullable = false, length = 20)
@@ -24,8 +24,8 @@ public class Group extends BaseEntity{
     private String creatorName;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "User_Group", joinColumns = {
-            @JoinColumn(name = "group_fk",nullable = false)
-    }, inverseJoinColumns = @JoinColumn(name = "user_fk", nullable = false))
+            @JoinColumn(name = "r_group_fk",nullable = false)
+    }, inverseJoinColumns = @JoinColumn(name = "r_user_fk", nullable = false))
     private Set<User> users;
 
 

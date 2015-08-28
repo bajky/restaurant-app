@@ -3,14 +3,14 @@ package mainpackage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.slf4j.LoggerFactory;
-
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:/spring/spring-application-test-context.xml"})
@@ -23,8 +23,9 @@ public class MenuDaoImplTest {
     @Test
     public void testCreateMenu() throws Exception {
         Menu menu = prepareMenu();
-
+//        TimeUnit.SECONDS.sleep(10000);
         Menu createdMenu = menuDao.create(menu); // TEST
+
         assertNotNull(createdMenu.getId());
     }
 

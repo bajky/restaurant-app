@@ -9,8 +9,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "Food")
-@SequenceGenerator(name = "generator",sequenceName = "SEQ_FOOD", allocationSize = 1)
+@Table(name = "R_FOOD")
+@SequenceGenerator(name = "generator",sequenceName = "SEQ_R_FOOD", allocationSize = 1)
 public class Food extends BaseEntity{
 
 
@@ -25,7 +25,7 @@ public class Food extends BaseEntity{
     private Integer price;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
-    @JoinColumn(name = "menu_fk")
+    @JoinColumn(name = "r_menu_fk")
     private Menu menu;
 
     public Menu getMenu() {

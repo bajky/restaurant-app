@@ -7,8 +7,8 @@ import java.util.Date;
  * Created by lrelovsky on 21.08.2015.
  */
 @Entity
-@Table
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_VOTE")
+@Table(name = "R_VOTE")
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_R_VOTE", allocationSize = 1)
 @NamedQuery(name = Vote.SELECT_VOTES_BY_USERS, query = "SELECT new mainpackage.VotesVO(v.timeFrom, v.restaurant.tittle)" +
         " FROM Vote v WHERE v.user.id = :userID")
 public class Vote extends BaseEntity {
@@ -27,11 +27,11 @@ public class Vote extends BaseEntity {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_fk")
+    @JoinColumn(name = "r_restaurant_fk")
     private Restaurant restaurant;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_fk")
+    @JoinColumn(name = "r_user_fk")
     private User user;
 
     public void setUser(User user) {

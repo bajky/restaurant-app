@@ -6,9 +6,9 @@ import javax.persistence.*;
  * Created by lrelovsky on 21.08.2015.
  */
 
-@Table
 @Entity
-@SequenceGenerator(name = "generator", sequenceName = "SEQ_COMMENT")
+@Table(name = "R_COMMENT")
+@SequenceGenerator(name = "generator", sequenceName = "SEQ_R_COMMENT")
 public class Comment extends BaseEntity {
 
     @Column(nullable =  false)
@@ -18,11 +18,11 @@ public class Comment extends BaseEntity {
     @Column(name = "adding_time", nullable = false)
     private Long addedTime;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_fk")
+    @JoinColumn(name = "r_restaurant_fk")
     Restaurant restaurant;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_fk")
+    @JoinColumn(name = "r_user_fk")
     User user;
 
     public String getText() {

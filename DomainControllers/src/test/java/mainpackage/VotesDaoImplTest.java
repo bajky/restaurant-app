@@ -24,11 +24,11 @@ public class VotesDaoImplTest {
     private VotesDao votesDao;
 
     @Test
-    public void getVotesByUserTest(){
+    public void getVotesByUserTest() throws InterruptedException {
         User user = prepareUser();
         Restaurant restaurant = prepateRestaurant();
         Vote vote = prepareVote(user, restaurant);
-
+//        TimeUnit.SECONDS.sleep(10000);
         votesDao.create(vote);
         List<VotesVO> resultList = votesDao.getVotesByUser(user.getId());
         assertEquals(vote.getTimeFrom(), resultList.get(0).getTimeFrom());

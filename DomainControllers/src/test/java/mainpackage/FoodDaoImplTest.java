@@ -1,5 +1,6 @@
 package mainpackage;
 
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/spring-application-test-context.xml"})
@@ -47,9 +49,9 @@ public class FoodDaoImplTest {
     }
 
     @Test
-    public void createFood(){
+    public void createFood() throws InterruptedException {
         Food food = prepareFood();
-
+//        TimeUnit.SECONDS.sleep(10000);
         Food createdFood = foodDao.create(food); // TEST
 
         assertNotNull(createdFood.getId());
